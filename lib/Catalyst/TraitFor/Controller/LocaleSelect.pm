@@ -8,11 +8,11 @@ Catalyst::TraitFor::Controller::LocaleSelect - Provides locale selection mechani
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 before 'auto' => sub {
     my ( $self, $c ) = @_;
@@ -33,7 +33,7 @@ before 'auto' => sub {
 sub _lang_for_request {
     my ( $self, $c, $allowed ) = @_;
 
-    my $language = $c->req->param('locale');
+    my $language = delete $c->req->params->{'locale'};
     if ( $language && exists $allowed->{ $language } ) {   
         return $language;
     }
@@ -43,7 +43,7 @@ sub _lang_for_request {
 sub _lang_for_set {
     my ( $self, $c, $allowed ) = @_;
 
-    my $language = $c->req->param('set_locale');
+    my $language = delete $c->req->params->{'set_locale'};
     if ( $language && exists $allowed->{ $language } ) {   
         $c->res->cookies->{'locale'} = {
             value   => $language,
