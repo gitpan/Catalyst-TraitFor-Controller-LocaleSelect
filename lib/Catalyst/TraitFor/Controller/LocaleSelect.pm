@@ -8,11 +8,11 @@ Catalyst::TraitFor::Controller::LocaleSelect - Provides locale selection mechani
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 before 'auto' => sub {
     my ( $self, $c ) = @_;
@@ -143,8 +143,13 @@ This role will give to all actions on the controller two more capabilities:
     
 =over 4
 
-=item * One time locale selection if exists param('locale') and have an allowed value.
-=item * Cookie based locale lock-in selection using param('set_locale').
+=item * 
+
+One time locale selection if exists param('locale') and have an allowed value.
+
+=item 
+
+* Cookie based locale lock-in selection using param('set_locale').
 
 =back
 
